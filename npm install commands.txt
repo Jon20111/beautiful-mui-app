@@ -1,0 +1,5 @@
+npx create-react-app beautiful-mui-app
+
+npm install @mui/material, @emotion/react, @emotion/styled, @mui/icons-material, react-router-dom@6, typescript, @mui/x-date-pickers, @date-io/dayjs dayjs, @mui/x-data-grid
+
+Copy tsconfig.json from course resources
