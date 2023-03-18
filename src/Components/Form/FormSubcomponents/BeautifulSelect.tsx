@@ -1,29 +1,29 @@
-import { useEffect, useRef, useState } from "react";
-import { Select, SelectProps } from "@mui/material";
+import { useEffect, useRef, useState, ReactNode } from "react";
+import { Select, SelectChangeEvent } from "@mui/material";
 import { minWidth } from "../ContactForm";
 
-//SelectProps is fussy
-export default function (props: any) {
-  const [position, setPosition] = useState(0);
+export default function BeautifulSelect(
+  props: {
+    value: "" | string[] | undefined,
+    onChange: (event: SelectChangeEvent<string[]>, child: React.ReactNode) => void,
+    children: ReactNode[]
+  }
+) {
   const selectInputComponent = useRef<HTMLInputElement>(null);
+  const [position, setPosition] = useState(0);
 
   useEffect(() => {
-    setPosition(selectInputComponent.current ? (selectInputComponent.current.getBoundingClientRect().left + 20) : 0)
-  }, []
-  )
+    setPosition(selectInputComponent.current ? (selectInputComponent.current.getBoundingClientRect().left + 20) : 0);
+  }, [selectInputComponent])
+
   return (
     <Select
-    {...props}
-    ref={selectInputComponent}
+      ref={selectInputComponent}
+      {...props}
       id="skill-select"
-      labelId="skill-select-label"
-      sx={{ 
-        minWidth: minWidth, 
-        marginRight: { md: 2 },
-        marginBottom: { xs: 2, md: 0 }
-      }}
+      renderValue={(select: string[]) => select.join(", ")}
+      sx={{ minWidth: minWidth, marginRight: 2, marginBottom: { xs: 2, md: 0 } }}
       multiple
-      renderValue={(selected: string[]) => selected.join(", ")}
       MenuProps={{
         PaperProps: {
           sx: {
@@ -32,6 +32,8 @@ export default function (props: any) {
           }
         }
       }}
-    />
+    >
+      {props.children}
+    </Select>
   )
 }

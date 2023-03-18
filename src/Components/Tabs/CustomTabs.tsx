@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 
 //@ts-ignore
 function TabPanel(props) {
@@ -18,9 +18,9 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Stack sx={{ p: 3 }}>
           <Typography>{children}</Typography>
-        </Box>
+        </Stack>
       )}
     </div>
   );
@@ -32,7 +32,6 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired
 };
 
-//Currently this is only used in an exercise
 export default function CustomTabs() {
   const [value, setValue] = React.useState(0);
 
@@ -41,8 +40,8 @@ export default function CustomTabs() {
   };
 
   return (
-    <Box sx={{ width: "max-content" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Stack sx={{ width: "max-content" }}>
+      <Stack sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -61,7 +60,7 @@ export default function CustomTabs() {
           <Tab label="Tab Two" />
           <Tab label="Tab Three" />
         </Tabs>
-      </Box>
+      </Stack>
       <TabPanel value={value} index={0}>
         Tab One
       </TabPanel>
@@ -71,6 +70,6 @@ export default function CustomTabs() {
       <TabPanel value={value} index={2}>
         Tab Three
       </TabPanel>
-    </Box>
+    </Stack>
   );
 }

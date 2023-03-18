@@ -6,22 +6,33 @@ declare module "@mui/material/styles/createPalette" {
   }
 
   interface PaletteOptions {
-    grid?: { main: string, dark: string };
+    grid?: { main: string, dark: string }
   }
 }
 
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
-    beautiful: true;
+    beautiful: true
   }
 }
 
-export const BeautifulTheme = createTheme({
+declare module "@mui/material/styles" {
+  interface BreakpointOverrides {
+    xs: true,
+    sm: true,
+    md: true,
+    lg: true,
+    sl: true,
+    xl: false
+  }
+}
+
+const BeautifulTheme = createTheme({
   palette: {
     primary: {
       main: "#18842c",
       light: "#3aab58",
-      dark: "sienna"
+      dark: "darkgreen"
     },
     grid: {
       main: "rgba(0,0,0,0.1)",
@@ -32,7 +43,7 @@ export const BeautifulTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          border: '1px solid orange'
+          border: "1px solid orange"
         }
       },
       variants: [
@@ -53,7 +64,12 @@ export const BeautifulTheme = createTheme({
       sm: 600,
       md: 960,
       lg: 1280,
-      xl: 1920
+      sl: 1500
     }
+  },
+  zIndex: {
+    appBar: 1150
   }
 });
+
+export { BeautifulTheme };
